@@ -1,0 +1,451 @@
+// AyuGram
+"Ayu.SupportSection" = "Підтримка";
+"Ayu.SupportChannel" = "Канал з оновленнями";
+"Ayu.SupportDeveloper" = "Зв’язатися з розробником";
+"Ayu.SessionLog" = "Журнал AyuGram";
+"Ayu.SessionLogEmpty" = "Журнал поки порожній.";
+"Ayu.SecuritySection" = "Безпека";
+"Ayu.BuildStatus" = "Збірка";
+"Ayu.BuildOfficial" = "Офіційна";
+"Ayu.BuildModified" = "Змінена";
+"Ayu.BuildChecking" = "Перевіряється…";
+"Ayu.BuildUnknown" = "Не перевірена";
+"Ayu.BuildInfoOfficial" = "Це офіційна збірка AyuGram з каналу @ayugramiosupdates.";
+"Ayu.BuildInfoModified" = "Ця збірка відрізняється від офіційної: її міг змінити будь-хто. Завантажуй AyuGram лише з каналу @ayugramiosupdates і ніколи не входь у чужий Apple ID.";
+"Ayu.BuildInfoUnknown" = "Збірку поки не вдалося перевірити. Перевірка повториться під час наступного запуску.";
+"Ayu.BuildDetails" = "Збірка: %@\nВстановлена через: %@\nСертифікат: %@\nTeam ID: %@";
+"Ayu.SourceSideload" = "Власний сертифікат (SideStore)";
+"Ayu.SourceEnterprise" = "Корпоративний сертифікат";
+"Ayu.ReportScam" = "Повідомити про скам";
+"Ayu.ReportScamInfo" = "Напиши юзернейм або посилання шахрая і як він пропонував тобі AyuGram. Повідомлення анонімне.";
+"Ayu.ReportScamSent" = "Дякую! Повідомлення надіслано.";
+"Ayu.ReportScamFailed" = "Не вдалося надіслати. Спробуй пізніше.";
+"Ayu.AnonymousStats" = "Анонімна статистика";
+"Ayu.AnonymousStatsInfo" = "Раз на день AyuGram надсилає номер збірки, спосіб встановлення та країну, а для змінених або чужих копій ще й сертифікат підпису. ID акаунта надсилається лише як незворотний хеш: його можна звірити тільки з шахраєм, на якого поскаржилися. Номер телефону й листування ніколи не надсилаються. Це допомагає знаходити шахрайські копії AyuGram і шахраїв.";
+"Ayu.ScamTitle" = "Шахрайська копія AyuGram";
+"Ayu.ScamText" = "Цю копію AyuGram поширюють шахраї, наприклад через чужий Apple ID. Вийди з чужого Apple ID у налаштуваннях iPhone, видали цю програму й завантаж AyuGram лише з каналу @ayugramiosupdates.";
+"Ayu.ScamChannel" = "Офіційний канал";
+"Ayu.CheckUpdates" = "Перевірити оновлення";
+"Ayu.UpToDate" = "У вас остання версія.";
+"Ayu.UpdateAvailable" = "Доступне оновлення";
+"Ayu.UpdateAvailableInfo" = "Вийшла версія %@. Відкрийте канал, щоб завантажити її.";
+"Ayu.UpdateIgnore" = "Ігнорувати";
+"Ayu.UpdateOpen" = "Оновити";
+"Ayu.UpdateNoticeTitle" = "Доступне оновлення! 🆕";
+"Ayu.UpdateNoticeText" = "Натисніть, щоб оновити";
+"Ayu.UpdateQuestion" = "Оновити AyuGram?";
+"Ayu.UpdateQuestionInfo" = "Версію %@ буде завантажено та встановлено.";
+"Ayu.LiveContainerUpdate" = "Щоб оновити, запустіть AyuGram у режимі Multitask (затисніть застосунок у LiveContainer) і спробуйте ще раз.";
+"Ayu.NotificationsSection" = "Сповіщення";
+"Ayu.BarkSetUp" = "Налаштувати сповіщення Bark";
+"Ayu.BarkConnected" = "Сповіщення Bark: увімк.";
+"Ayu.BarkFooter" = "Застосунок, встановлений через сайдлоад, не отримує сповіщень від Apple. Встановіть Bark з App Store, скопіюйте в ньому свій ключ і вставте сюди. Нові повідомлення надходитимуть через ретранслятор AyuGram як сповіщення Bark.";
+"Ayu.BarkPrompt" = "Вставте ключ Bark або посилання із застосунку Bark. Залиште порожнім, щоб вимкнути сповіщення.";
+"Ayu.BarkEnabled" = "Готово. Нові повідомлення надходитимуть сповіщеннями Bark, поки AyuGram закритий.";
+"Ayu.BarkDisabled" = "Сповіщення Bark вимкнено.";
+"Ayu.BarkInvalid" = "Це не ключ Bark. Скопіюйте в Bark адресу https://api.day.app/… з головного екрана, а не Device Token.";
+"Ayu.BarkFailed" = "Telegram не прийняв підписку: %@";
+"Ayu.BarkFixTitle" = "Виправити сповіщення";
+"Ayu.BarkFixInstall" = "Встановіть Bark з App Store";
+"Ayu.BarkFixConnect" = "Підключіть Bark, щоб отримувати сповіщення";
+"Ayu.BarkEnterKey" = "Ввести ключ";
+"Ayu.BarkHowTo" = "1. Встановіть Bark з App Store і відкрийте його.\n2. Скопіюйте адресу https://api.day.app/… з його головного екрана.\n3. Поверніться сюди, натисніть «Ввести ключ» і вставте її.";
+"Ayu.ExportChat" = "Експорт чату";
+"Ayu.ExportChatMedia" = "Увесь чат зберігається в архів, який Telegram може імпортувати. Додати фото, відео, голосові повідомлення та файли? Їх завантаження може тривати довго.";
+"Ayu.ExportChatWithMedia" = "З медіафайлами";
+"Ayu.ExportChatTextOnly" = "Лише текст";
+"Ayu.ExportChatLoading" = "Завантаження повідомлень: %@";
+"Ayu.ExportChatDownloading" = "Завантаження медіафайлів: %@";
+"Ayu.ExportChatSaving" = "Створення архіву…";
+"Ayu.ExportChatEmpty" = "Немає повідомлень для експорту.";
+"Ayu.ChatTransferSection" = "Перенесення чатів";
+"Ayu.ImportChat" = "Імпорт чату";
+"Ayu.ImportChatFooter" = "Імпортуйте в один зі своїх чатів чат, експортований з WhatsApp, LINE, KakaoTalk або через «Експорт чату» в AyuGram (файл ZIP або TXT).";
+"Ayu.ImportChatInvalid" = "Цей файл не є підтримуваним експортом чату.";
+"Ayu.HistorySaveAudio" = "Зберегти аудіо";
+"Ayu.HistoryDeleteEntry" = "Видалити з історії";
+"Ayu.DeletedChats" = "Видалені чати";
+"Ayu.DeletedChatsInfo" = "Чати, історію яких видалено повністю. Те, що AyuGram встиг зберегти, автоматично не видаляється.";
+"Ayu.DeletedChatSave" = "Зберегти архівом";
+"Ayu.DeletedChatRemove" = "Прибрати зі списку";
+"Ayu.DeletedChatDelete" = "Видалити збережені повідомлення";
+"Ayu.HistorySubtitle" = "Видалені та змінені повідомлення з вибраних чатів. Зберігаються лише на цьому пристрої.";
+"Ayu.HistoryAll" = "Усі";
+"Ayu.HistoryEdited" = "Змінено";
+"Ayu.HistoryNow" = "Зараз";
+"Ayu.HistoryShowMessage" = "Показати в чаті";
+"Ayu.HistoryOpenChat" = "Відкрити чат";
+"Ayu.HistoryStopSaving" = "Не зберігати цей чат";
+"Ayu.HistoryNoChats" = "Виберіть чати для історії. Поки не додано хоча б один, нічого не зберігається.";
+"Ayu.HistoryEmptyInfo" = "Тут з’являться видалені та змінені повідомлення.";
+"Ayu.AddAccountHelp" = "Можна додати до 500 акаунтів з різними номерами телефонів.";
+"Ayu.HeroGhostOn" = "Режим привида увімкнено";
+"Ayu.HeroGhostOff" = "Режим привида вимкнено";
+"Ayu.HeroHidden" = "Приховано: %@ з %@";
+"Ayu.GhostSubtitle" = "Онлайн, прочитання, набір, запис, завантаження та історії";
+"Ayu.GhostFooter" = "Режим привида вмикає всі перемикачі нижче та зберігає їхні власні значення.";
+"Ayu.HideSection" = "Що приховувати";
+"Ayu.BehaviorSection" = "Поведінка";
+"Ayu.OfflineAfterSending" = "Офлайн після надсилання";
+"Ayu.OfflineAfterSendingInfo" = "Одразу повідомляти «не в мережі» після кожного повідомлення";
+"Ayu.ReadOnSend" = "Читати чат під час відповіді";
+"Ayu.ReadOnSendInfo" = "Надіслане повідомлення позначає чат прочитаним";
+"Ayu.QuickToggle" = "Перемикач у вкладці «Чати»";
+"Ayu.QuickToggleInfo" = "Утримуйте вкладку «Чати», щоб швидко увімкнути або вимкнути режим привида.";
+"Ayu.ContentSection" = "Вміст";
+"Ayu.IgnoreProtection" = "Обходити заборону копіювання";
+"Ayu.IgnoreProtectionInfo" = "Збереження, копіювання та пересилання із захищених чатів";
+"Ayu.AllowScreenshots" = "Дозволити знімки екрана";
+"Ayu.AllowScreenshotsInfo" = "Захищені й секретні чати видно на знімках і записі екрана";
+"Ayu.ContentFooter" = "Повідомлення із захищених чатів пересилаються копією без автора, медіа завантажується знову. Налаштування знімків діє для щойно відкритих екранів.";
+"Ayu.SaveDeletedInfo" = "Залишаються в усіх чатах; вибрані чати також потрапляють в історію повідомлень";
+"Ayu.OpenHistory" = "Відкрити історію";
+"Ayu.ClientSection" = "Клієнт";
+"Ayu.LocalPremiumInfo" = "Premium-емодзі та статуси лише на цьому пристрої";
+"Ayu.GhostEnable" = "Увімкнути режим привида";
+"Ayu.GhostDisable" = "Вимкнути режим привида";
+"Ayu.GhostEnabledToast" = "Режим привида увімкнено";
+"Ayu.GhostDisabledToast" = "Режим привида вимкнено";
+"Ayu.ChatListBackground" = "Фон списку чатів";
+"Ayu.ConversationBackground" = "Фон чатів";
+"Ayu.ChooseVideo" = "Вибрати відео";
+"Ayu.ShowBackground" = "Показувати фон";
+
+"Settings.ContentSettings" = "Налаштування контенту";
+
+"Settings.Tabs.Header" = "ВКЛАДКИ";
+"Settings.Tabs.HideTabBar" = "Приховати панель вкладок";
+"Settings.Tabs.ShowContacts" = "Вкладка \"Контакти\"";
+"Settings.Tabs.ShowNames" = "Показувати назви вкладок";
+
+"Settings.Folders.BottomTab" = "Папки знизу";
+"Settings.Folders.BottomTabStyle" = "Стиль нижніх папок";
+
+/* Do not translate */
+"Settings.Folders.BottomTabStyle.ios" = "iOS";
+/* Do not translate */
+"Settings.Folders.BottomTabStyle.telegram" = "Telegram";
+/* Example: Hide "All Chats" */
+"Settings.Folders.AllChatsHidden" = "Приховати \"%@\"";
+"Settings.Folders.RememberLast" = "Відкривати останню папку";
+"Settings.Folders.RememberLast.Notice" = "Swiftgram відкриє останню папку після перезапуску застосунку або зміни акаунту.";
+
+"Settings.Folders.CompactNames" = "Зменшити відступи";
+"Settings.Folders.AllChatsTitle" = "Заголовок \"Усі чати\"";
+"Settings.Folders.AllChatsTitle.short" = "Короткий";
+"Settings.Folders.AllChatsTitle.long" = "Довгий";
+/* Default behaviour for All Chats Folder Title. "All Chats" title: Default */
+"Settings.Folders.AllChatsTitle.none" = "Типовий";
+
+
+"Settings.ChatList.Header" = "СПИСОК ЧАТІВ";
+"Settings.CompactChatList" = "Компактний список чатів";
+
+"Settings.Profiles.Header" = "ПРОФІЛІ";
+
+"Settings.Stories.Hide" = "Приховувати історії";
+"Settings.Stories.WarnBeforeView" = "Питати перед переглядом";
+"Settings.Stories.DisableSwipeToRecord" = "Вимкнути \"Свайп для запису\"";
+
+"Settings.Translation.QuickTranslateButton" = "Кнопка швидкого перекладу";
+
+"Stories.Warning.Author" = "Автор";
+"Stories.Warning.ViewStory" = "Переглянути історію?";
+/* Author will be able to see that you viewed their Story */
+"Stories.Warning.Notice" = "%@ ЗМОЖЕ ПОБАЧИТИ, що ви переглянули їх історію.";
+"Stories.Warning.NoticeStealth" = "%@ не побачить, що ви переглянули їх історію.";
+
+"Settings.Photo.Quality.Notice" = "Якість відправлених фото та історій";
+"Settings.Photo.SendLarge" = "Надсилати великі фотографії";
+"Settings.Photo.SendLarge.Notice" = "Збільшити ліміт розміру стиснутих зображень до 2560px";
+
+"Settings.VideoNotes.Header" = "КРУГЛІ ВІДЕО";
+"Settings.VideoNotes.StartWithRearCam" = "Починати запис з задньої камери";
+
+"Settings.CustomColors.Header" = "КОЛЬОРИ АККАУНТУ";
+"Settings.CustomColors.Saturation" = "НАСИЧЕНІСТЬ";
+/* Make sure to escape Percentage sign % */
+"Settings.CustomColors.Saturation.Notice" = "Встановіть насиченість на 0%%, щоб вимкнути персональні кольори";
+
+"Settings.UploadsBoost" = "Прискорення вивантаження";
+"Settings.DownloadsBoost" = "Прискорення завантаження";
+"Settings.DownloadsBoost.Notice" = "Збільшує кількість паралельних з'єднань та розмір частин файлів. Якщо ваша мережа не може витримати навантаження, спробуйте різні опції, які підходять вашому з'єднанню.";
+"Settings.DownloadsBoost.none" = "Відключено";
+"Settings.DownloadsBoost.medium" = "Середнє";
+"Settings.DownloadsBoost.maximum" = "Максимальне";
+
+"Settings.ShowProfileID" = "Показувати ID профілю";
+"Settings.ShowDC" = "Показувати дата-центр";
+"Settings.ShowCreationDate" = "Показувати дату створення чату";
+"Settings.ShowCreationDate.Notice" = "Дата створення може бути невідома для деяких чатів.";
+
+"Settings.ShowRegDate" = "Показувати дату реєстрації";
+"Settings.ShowRegDate.Notice" = "Дата реєстрації є приблизною.";
+
+"Settings.SendWithReturnKey" = "Надсилати кнопкою \"Введення\"";
+"Settings.HidePhoneInSettingsUI" = "Приховати телефон у налаштуваннях";
+"Settings.HidePhoneInSettingsUI.Notice" = "Номер буде прихований тільки в налаштуваннях. Перейдіть в \"Приватність і безпека\", щоб приховати його від інших.";
+
+"PasscodeSettings.AutoLock.InFiveSeconds" = "За 5 сек";
+
+"ProxySettings.UseSystemDNS" = "Використовувати системні налаштування DNS";
+"ProxySettings.UseSystemDNS.Notice" = "Використовувати системний DNS для обходу тайм-ауту, якщо у вас немає доступу до Google DNS";
+
+/* Preserve markdown asterisks! Example: You **don't** need Telegram Premium! */
+"Common.NoTelegramPremiumNeeded" = "Вам **не потрібен** %@!";
+"Common.RestartRequired" = "Потрібен перезапуск";
+"Common.RestartNow" = "Перезавантажити";
+"Common.OpenTelegram" = "Відкрити Telegram";
+"Common.UseTelegramForPremium" = "Зверніть увагу, що для отримання Telegram Premium вам потрібен офіційний застосунок Telegram. Після отримання Telegram Premium, усі переваги стануть доступними у Swiftgram.";
+"Common.UpdateOS" = "Необхідне оновлення iOS";
+
+"Message.HoldToShowOrReport" = "Затисніть, щоб переглянути або поскаржитись.";
+
+"Auth.AccountBackupReminder" = "Переконайтеся, що у вас є резервний метод доступу. Тримайте SIM-карту для SMS або додаткову сесію, щоб не втратити доступ до акаунту.";
+"Auth.UnofficialAppCodeTitle" = "Ви можете отримати код тільки з офіційним додатком";
+
+"Settings.SmallReactions" = "Малі реакції";
+"Settings.HideReactions" = "Приховувати реакції";
+
+"ContextMenu.SaveToCloud" = "Переслати в Збережене";
+"ContextMenu.SelectFromUser" = "Вибрати від автора";
+
+"Settings.ContextMenu" = "КОНТЕКСТНЕ МЕНЮ";
+"Settings.ContextMenu.Notice" = "Вимкнені елементи будуть доступні в підменю \"Swiftgram\".";
+
+
+"Settings.ChatSwipeOptions" = "Опції свайпу у списку чатів";
+"Settings.DeleteChatSwipeOption" = "Потягнути для видалення чату";
+/* Re-word like this string on offical app https://translations.telegram.org/en/ios/groups_and_channels/Chat.NextChannelSameLocationSwipeProgress */
+"Settings.PullToNextChannel" = "Потягнути до наступного каналу";
+/* Re-word like this string on offical app https://translations.telegram.org/en/ios/groups_and_channels/Chat.NextUnreadTopicSwipeProgress */
+"Settings.PullToNextTopic" = "Потягнути до наступної гілки";
+"Settings.GalleryCamera" = "Камера в галереї";
+"Settings.GalleryCameraPreview" = "Попередній перегляд камери в галереї";
+/* "Send Message As..." button */
+"Settings.SendAsButton" = "Кнопка \"%@\"";
+"Settings.SnapDeletionEffect" = "Ефекти видалення повідомлення";
+
+"Settings.Stickers.Size" = "РОЗМІР";
+"Settings.Stickers.Timestamp" = "Показувати час";
+
+"Settings.RecordingButton" = "Кнопка запису голосу";
+
+"Settings.DefaultEmojisFirst" = "Пріоритизувати звичайні емодзі";
+"Settings.DefaultEmojisFirst.Notice" = "Показувати звичайні емодзі перед преміум у клавіатурі емодзі";
+
+/* Date when chat was created. "created: 24 May 2016" */
+"Chat.Created" = "створено: %@";
+
+/* Date when user joined the chat. "Joined Swiftgram Chat" */
+"Chat.JoinedDateTitle" = "Приєднався до %@";
+/* Date when user registered in Telegram. Will be shown like "Registered\n24 May 2016" */
+"Chat.RegDate" = "Реєстрація";
+
+"Settings.messageDoubleTapActionOutgoingEdit" = "Ред. повідомлення подвійним дотиком";
+
+"Settings.wideChannelPosts" = "Широкі пости в каналах";
+"Settings.ForceEmojiTab" = "Клавіатура емодзі за замовчуванням";
+
+"Settings.forceBuiltInMic" = "Використовувати мікрофон пристрою";
+"Settings.forceBuiltInMic.Notice" = "Якщо увімкнено, застосунок використовуватиме лише мікрофон пристрою, навіть якщо підключені навушники.";
+
+"Settings.showChannelBottomButton" = "Нижня панель у каналах";
+
+"Settings.secondsInMessages" = "Секунди в повідомленнях";
+
+"Settings.CallConfirmation" = "Підтвердження викликів";
+"Settings.CallConfirmation.Notice" = "Swiftgram запитуватиме дозвіл перед здійсненням виклику.";
+
+/* Confirmation before making a Call */
+"CallConfirmation.Audio.Title" = "Здійснити виклик?";
+
+/* Confirmation before making a Video Call */
+"CallConfirmation.Video.Title" = "Здійснити відеовиклик?";
+
+"MutualContact.Label" = "взаємний контакт";
+
+"Settings.swipeForVideoPIP" = "Відео PIP зі змахуванням";
+"Settings.swipeForVideoPIP.Notice" = "Якщо увімкнено, змахування відео відкриє його в режимі «Картинка в картинці».";
+
+"SessionBackup.Title" = "Резервне копіювання сесії";
+"SessionBackup.Sessions.Title" = "Сесії";
+"SessionBackup.Actions.Backup" = "Резервне копіювання в Keychain";
+"SessionBackup.Actions.Restore" = "Відновлення з Keychain";
+"SessionBackup.Actions.DeleteAll" = "Видалити резервну копію Keychain";
+"SessionBackup.Actions.DeleteOne" = "Видалити з резервної копії";
+"SessionBackup.Actions.RemoveFromApp" = "Видалити з додатку";
+"SessionBackup.LastBackupAt" = "Останнє резервне копіювання: %@";
+"SessionBackup.RestoreOK" = "ОК. Сесії відновлено: %@";
+"SessionBackup.LoggedIn" = "Увійшли";
+"SessionBackup.LoggedOut" = "Вийшли";
+"SessionBackup.DeleteAll.Title" = "Видалити всі сесії?";
+"SessionBackup.DeleteAll.Text" = "Всі сесії будуть видалені з Keychain.\n\nОблікові записи не будуть вийшли зі Swiftgram.";
+"SessionBackup.DeleteSingle.Title" = "Видалити 1 (одну) сесію?";
+"SessionBackup.DeleteSingle.Text" = "%@ сесія буде видалена з Keychain.\n\nОбліковий запис не буде вийшов зі Swiftgram.";
+"SessionBackup.RemoveFromApp.Title" = "Видалити обліковий запис з додатку?";
+"SessionBackup.RemoveFromApp.Text" = "%@ сесія БУДЕ ВИДАЛЕНА з Swiftgram! Сесія залишиться активною, щоб ви могли відновити її пізніше.";
+"SessionBackup.Notice" = "Сесії зашифровані та зберігаються на пристрої. Сесії ніколи не залишають ваш пристрій.\n\nВАЖЛИВО: Для відновлення сесій на іншому пристрої або після скидання налаштувань, ви повинні ввімкнути шифрування резервних копій, в іншому випадку ключі не будуть перенесені.\n\nТАКОЖ: Сесії можуть бути відкликані Telegram або з іншого пристрою.";
+
+"MessageFilter.Title" = "Фільтр повідомлень";
+"MessageFilter.SubTitle" = "Приховати відволікання та зменшити видимість повідомлень, що містять нижчевказані ключові слова.\nКлючові слова чутливі до регістру.";
+"MessageFilter.Keywords.Title" = "Ключові слова";
+"MessageFilter.InputPlaceholder" = "Введіть ключове слово";
+
+"InputToolbar.Title" = "Панель форматування";
+
+"Notifications.MentionsAndReplies.Title" = "@Згадай та відповіді";
+"Notifications.MentionsAndReplies.value.default" = "Типовий";
+"Notifications.MentionsAndReplies.value.silenced" = "Приглушено";
+"Notifications.MentionsAndReplies.value.disabled" = "Відключено";
+"Notifications.PinnedMessages.Title" = "Закріплені повідомлення";
+"Notifications.PinnedMessages.value.default" = "Типовий";
+"Notifications.PinnedMessages.value.silenced" = "Приглушено";
+"Notifications.PinnedMessages.value.disabled" = "Відключено";
+
+
+"PayWall.Text" = "Посилений функціями Pro";
+
+"PayWall.SessionBackup.Title" = "Резервне копіювання сесії";
+"PayWall.SessionBackup.Notice" = "Вхід до облікових записів без коду, навіть після перевстановлення. Безпечне сховище з Ключарем пристрою.";
+"PayWall.SessionBackup.Description" = "Зміна пристрою або видалення Swiftgram більше не проблема. Відновити всі сеанси, які досі активні на серверах Telegram.";
+
+"PayWall.MessageFilter.Title" = "Фільтр повідомлень";
+"PayWall.MessageFilter.Notice" = "Зменшити видимість СПАМу, реклам та набридливих повідомлень.";
+"PayWall.MessageFilter.Description" = "Створити список ключових слів, які ви не хочете бачити часто, а Swiftgram зменшить відволікання.";
+
+"PayWall.Notifications.Title" = "Вимкнути @згадки та відповіді";
+"PayWall.Notifications.Notice" = "Сховати або приглушити непотрібні сповіщення.";
+"PayWall.Notifications.Description" = "Більше не потрібно використовувати прикріплені повідомлення або @згадки, коли ви потребуєте розуму.";
+
+"PayWall.InputToolbar.Title" = "Панель форматування";
+"PayWall.InputToolbar.Notice" = "Зберігати час форматування повідомлень одним дотиком.";
+"PayWall.InputToolbar.Description" = "Застосувати і очистити форматування або вставити нові лінії, як Pro.";
+
+"PayWall.AppIcons.Title" = "Унікальні значки додатків";
+"PayWall.AppIcons.Notice" = "Налаштуйте вигляд Swiftgram на вашому домашньому екрані.";
+
+"PayWall.About.Title" = "Про Swiftgram Pro";
+"PayWall.About.Notice" = "Безкоштовна версія Swiftgram надає десятки функцій та покращень у порівнянні з додатком Telegram. Інновації та підтримка Swiftgram в актуальному стані з місячними оновленнями Telegram потребує величезних зусиль, що вимагають багато часу та дорогого обладнання.\n\nSwiftgram — це додаток з відкритим кодом, який поважає вашу конфіденційність і не турбує вас рекламою. Підписуючись на Swiftgram Pro, ви отримуєте доступ до ексклюзивних функцій і підтримуєте незалежного розробника.\n\n- @Kylmakalle";
+/* DO NOT TRANSLATE */
+"PayWall.About.Signature" = "@Kylmakalle";
+/* DO NOT TRANSLATE */
+"PayWall.About.SignatureURL" = "https://t.me/Kylmakalle";
+
+"PayWall.ProSupport.Title" = "Проблеми з оплатою?";
+"PayWall.ProSupport.Contact" = "Не хвилюйтеся!";
+
+"PayWall.RestorePurchases" = "Відновити покупки";
+"PayWall.Terms" = "Умови обслуговування";
+"PayWall.Privacy" = "Політика конфіденційності";
+"PayWall.TermsURL" = "https://swiftgram.app/terms";
+"PayWall.PrivacyURL" = "https://swiftgram.app/privacy";
+"PayWall.Notice.Markdown" = "Підписуючись на Swiftgram Pro, ви погоджуєтеся з [Умовами обслуговування Swiftgram](%1$@) та [Політикою конфіденційності](%2$@).";
+"PayWall.Notice.Raw" = "Підписуючись на Swiftgram Pro, ви погоджуєтеся з Умовами обслуговування Swiftgram та Політикою конфіденційності.";
+
+"PayWall.Button.OpenPro" = "Використовувати функції Pro";
+"PayWall.Button.Purchasing" = "Придбання...";
+"PayWall.Button.Restoring" = "Відновлення покупок...";
+"PayWall.Button.Validating" = "Перевірка покупки...";
+"PayWall.Button.PaymentsUnavailable" = "Платежі недоступні";
+"PayWall.Button.BuyInAppStore" = "Підписатися на версію в App Store";
+"PayWall.Button.Subscribe" = "Підписатися за %@ / місяць";
+"PayWall.Button.ContactingAppStore" = "Зв'язок з App Store...";
+
+"Paywall.Error.Title" = "Помилка";
+"PayWall.ValidationError" = "Помилка валідації";
+"PayWall.ValidationError.TryAgain" = "Щось пішло не так під час перевірки покупки. Не хвилюйтеся! Спробуйте відновити покупки трохи пізніше.";
+"PayWall.ValidationError.Expired" = "Ваша підписка застаріла. Підпишіться, щоб відновити доступ до Pro-можливостей.";
+
+"Ayu.Ghost" = "Режим привида";
+"Ayu.HideRead" = "Приховувати прочитання";
+"Ayu.HideOnline" = "Приховувати онлайн";
+"Ayu.HideTyping" = "Приховувати набір тексту";
+"Ayu.HideRecording" = "Приховувати запис";
+"Ayu.HideUploading" = "Приховувати завантаження";
+"Ayu.HideStories" = "Приховувати перегляд історій";
+"Ayu.History" = "Історія повідомлень";
+"Ayu.SaveDeleted" = "Зберігати видалені повідомлення";
+"Ayu.SavePhotos" = "Зберігати фото";
+"Ayu.ClearHistory" = "Очистити історію";
+"Ayu.EmptyHistory" = "Історія поки порожня";
+"Ayu.SaveMedia" = "Зберігати медіа з кешу";
+"Ayu.BeforeEdit" = "До зміни";
+"Ayu.Deleted" = "Видалено";
+"Ayu.ServerPresence" = "На сервері: %@";
+"Ayu.ServerUnavailable" = "Статус сервера недоступний";
+"Ayu.SendReadReceipt" = "Надіслати звіт про прочитання";
+"Ayu.ViewWithoutReceipt" = "Переглянути без звіту";
+"Ayu.ReportPhotoView" = "Повідомити про перегляд фото";
+"Ayu.View" = "Переглянути";
+"Ayu.SendReceipt" = "Надіслати";
+"Ayu.ReceiptSent" = "Звіт надіслано";
+"Ayu.ReceiptError" = "Не вдалося надіслати звіт. Перевір з’єднання та спробуй ще раз.";
+"Ayu.IconChangeUnavailable" = "Вибір збережено в застосунку. iOS не дозволила змінити іконку на головному екрані.";
+"Ayu.LocalPremium" = "Локальний Premium";
+"Ayu.Pins" = "Максимум закріплених чатів";
+"Ayu.LocalOnly" = "Лише на цьому пристрої";
+"Ayu.HistoryInfo" = "Лише вибрані чати. Завантажені фото й текст: 30 днів, до 200 записів. Без секретних чатів і одноразових медіа.";
+"Ayu.ReadWarning" = "Надіслати звіт про прочитання чату до цього повідомлення?";
+"Ayu.ViewWarning" = "Надіслати звіт про перегляд і запустити таймер зникаючого медіа?";
+"Ayu.SilentSending" = "Надсилання без звуку";
+"Ayu.SilentNever" = "Ніколи";
+"Ayu.SilentInGhost" = "У режимі привида";
+"Ayu.SilentAlways" = "Завжди";
+"Ayu.ScheduleInGhost" = "Надсилати відкладеними";
+"Ayu.ScheduleInGhostInfo" = "У режимі привида повідомлення йдуть як відкладені через 12 секунд, і ти не з'являєшся в мережі";
+"Ayu.ChatsSection" = "Чати";
+"Ayu.DisableAds" = "Приховувати рекламу";
+"Ayu.DisableLinkWarning" = "Без попередження про приховані посилання";
+"Ayu.DisableGreeting" = "Без стікера-привітання";
+"Ayu.DimDeleted" = "Напівпрозорі видалені повідомлення";
+"Ayu.RepeatMessage" = "«Повторити» в меню повідомлення";
+"Ayu.Repeat" = "Повторити";
+"Ayu.ConfirmStickers" = "Підтверджувати надсилання стікерів";
+"Ayu.ConfirmGifs" = "Підтверджувати надсилання GIF";
+"Ayu.ConfirmSticker" = "Надіслати цей стікер?";
+"Ayu.ConfirmGif" = "Надіслати цей GIF?";
+"Ayu.Send" = "Надіслати";
+"Ayu.ImportLocally" = "Імпортувати локально";
+"Ayu.ImportLocallyInfo" = "Можна імпортувати чат лише на цьому пристрої: повідомлення з'являться в цьому чаті тільки в тебе й не надсилатимуться в Telegram.";
+"Ayu.ImportLocallyDone" = "Імпортовано повідомлень: %@. Їх видно лише на цьому пристрої.";
+"Ayu.ViewDeleted" = "Видалені повідомлення";
+"Ayu.DeletedSectionUsers" = "Особисті повідомлення";
+"Ayu.DeletedSectionGroups" = "Чати";
+"Ayu.DeletedSectionChannels" = "Канали";
+"Ayu.DeletedSearch" = "Пошук за чатом, ніком або текстом";
+"Ayu.DeletedSearchText" = "Пошук у видалених повідомленнях";
+"Ayu.DeletedSearchEmpty" = "Нічого не знайдено.";
+"Ayu.ViewDeletedInfo" = "Чати, де на цьому пристрої збережено видалені повідомлення. Відкрий чат, щоб переглянути його видалені повідомлення або весь чат.";
+"Ayu.ViewDeletedEmpty" = "Видалених повідомлень поки немає.";
+"Ayu.ConfirmReadReceipt" = "Підтверджувати надсилання прочитання";
+"Ayu.BannedTitle" = "AyuGram заблоковано";
+"Ayu.BannedText" = "На тебе поскаржилися, що ти обманюєш людей за допомогою AyuGram, тому AyuGram на цьому пристрої заблоковано. Якщо це помилка, напиши в @ayugramiosupdates.";
+"Ayu.WarnTitle" = "Попередження";
+"Ayu.WarnText" = "На тебе поскаржилися, що ти обманюєш людей за допомогою AyuGram. Якщо це триватиме, AyuGram для тебе заблокують.";
+"Ayu.WarnOk" = "Зрозуміло";
+"Ayu.ReportAttachInfo" = "Прикріпити скриншоти або відео як доказ? До 5 файлів, відео до 20 МБ.";
+"Ayu.ReportAttach" = "Прикріпити фото або відео";
+"Ayu.ReportSendNow" = "Надіслати без вкладень";
+"Ayu.ReportAttachFailed" = "Скаргу надіслано, але частина вкладень не завантажилася.";
+"Ayu.Reason" = "Причина: %@";
+"Ayu.BannedTextReason" = "AyuGram для твого акаунта заблоковано. Якщо це помилка, напиши в @ayugramiosupdates.";
+"Ayu.Reason.scam" = "шахрайство";
+"Ayu.Reason.resale" = "продаж AyuGram";
+"Ayu.Reason.abuse" = "спам і зловживання";
+"Ayu.Reason.testflight" = "поширення AyuGram через TestFlight або App Store";
+"Ayu.Reason.modified" = "змінена збірка AyuGram";
+"Ayu.Reason.fork" = "неофіційний форк AyuGram";
+"Ayu.ReportMediaView" = "Надіслати перегляд";
+"Ayu.PeekOnline" = "Підглянути онлайн";
+"Ayu.PeekOnlineVia" = "Підглянуто через %@";
+"Ayu.PeekOnlineDone" = "Підглянуто: час заходу показано";
+"Ayu.PeekOnlineVisible" = "Час заходу й так видно";
+"Ayu.PeekOnlineHidden" = "Користувач приховав час заходу, підглянути не можна";
+"Ayu.KeepAlive" = "Сповіщення без Apple";
+"Ayu.KeepAliveOff" = "Вимкнено";
+"Ayu.KeepAliveAlways" = "Завжди";
+"Ayu.KeepAliveMinutes" = "%@ хв після виходу";
+"Ayu.KeepAliveFooter" = "AyuGram працює у фоні завдяки беззвучному звуку й показує сповіщення про нові повідомлення без пушів Apple. Витрачає більше батареї. Музику й дзвінки не перериває, після дзвінка вмикається сам. З Bark не потрібно.";
+"Ayu.TerminatedNotice" = "AyuGram закрито, сповіщення призупинено. Відкрийте його, щоб повернути їх.";
+"Ayu.NotificationPicture" = "Завантажити фото";

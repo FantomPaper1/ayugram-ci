@@ -1,0 +1,67 @@
+import Foundation
+
+public struct AyuGramUpdateInfo: Equatable {
+    public let build: Int
+    public let version: String
+    public let url: String
+    /// Direct IPA links by variant ("standard", "custom"), used to install the update.
+    public var ipa: [String: String] = [:]
+}
+
+/// Checks the published update manifest. Only the manifest is downloaded; nothing
+/// about the user or the device is sent. The manifest also carries the block list.
+public final class AyuGramUpdates {
+    public static let shared = AyuGramUpdates()
+    public static let didChange = Notification.Name("AyuGram.Updates.didChange")
+    public static let manifestURL = URL(string: "https://raw.githubusercontent.com/mapix3/AyuGram-iOS/standard/update.json")!
+    public static let channelURL = "https://t.me/ayugramiosupdates"
+    public static let developerId: Int64 = 1272887902
+    /// Id of the chat list notice that announces an update.
+    public static let noticeId = "ayugram-update"
+    /// Shows the update dialog; installed by the settings module once the app is ready.
+    public static var presentUpdate: (() -> Void)?
+    public static var manifestObserver: ((Data) -> Void)?
+
+    private let lock = NSLock()
+    private var available: AyuGramUpdateInfo?
+    private let ignoredKey = "ayugram.updates.ignoredBuild"
+
+    public init() {}
+
+    public var availableUpdate: AyuGramUpdateInfo? {
+        lock.lock(); defer { lock.unlock() }
+        return available
+    }
+
+    public var currentBuild: Int {
+        return Int((Bundle.main.infoDictionary?["CFBundleVersion"] as? String) ?? "") ?? 0
+    }
+
+    public func isIgnored(_ info: AyuGramUpdateInfo) -> Bool {
+        return UserDefaults.standard.integer(forKey: ignoredKey) >= info.build
+    }
+
+    public func ignore(_ info: AyuGramUpdateInfo) {
+        UserDefaults.standard.set(info.build, forKey: ignoredKey)
+        NotificationCenter.default.post(name: Self.didChange, object: self)
+    }
+
+    /// Parses the manifest; only https links are accepted.
+    public static func parse(_ data: Data, currentBuild: Int) -> AyuGramUpdateInfo? {
+        guard let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              let build = (object["build"] as? Int) ?? (object["build"] as? String).flatMap(Int.init),
+              build > currentBuild,
+              let url = object["url"] as? String, url.hasPrefix("https://") else { return nil }
+        let version = (object["version"] as? String) ?? String(build)
+        var info = AyuGramUpdateInfo(build: build, version: version, url: url)
+        if let ipa = object["ipa"] as? [String: String] {
+            info.ipa = ipa.filter { $0.value.hasPrefix("https://") }
+        }
+        return info
+    }
+
+    // HARDENED_BUILD: the update manifest and its block list are never downloaded.
+    public func check(completion: @escaping (AyuGramUpdateInfo?) -> Void) {
+        completion(nil)
+    }
+}

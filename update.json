@@ -1,0 +1,13 @@
+{
+  "build": 208601,
+  "version": "13.1.2 (208601)",
+  "url": "https://t.me/ayugramiosupdates",
+  "ipa": {
+    "standard": "https://github.com/mapix3/AyuGram-iOS/releases/download/build-208601/AyuGram-standard-208601.ipa",
+    "custom": "https://github.com/mapix3/AyuGram-iOS/releases/download/build-208601/AyuGram-custom-208601.ipa"
+  },
+  "block": {
+    "teams": [],
+    "builds": []
+  }
+}
