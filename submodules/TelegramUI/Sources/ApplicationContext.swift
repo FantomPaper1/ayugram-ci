@@ -1108,20 +1108,23 @@ func ayuDiagLaunchSummary(root: TelegramRootController, window: Window1, tag: St
     for item in windows {
         lines.append("  window key=\(item.isKeyWindow) hidden=\(item.isHidden) level=\(item.windowLevel.rawValue) a=\(item.alpha) root=\(item.rootViewController.map { "\(type(of: $0))" } ?? "nil")")
     }
-    let rootView = root.view
+    let rootView: UIView = root.displayNode.view
     let rootFrame = rootView.frame
     let displayFrame = root.displayNode.frame
     lines.append("root loaded=\(root.isViewLoaded) f=[\(Int(rootFrame.origin.x)),\(Int(rootFrame.origin.y)),\(Int(rootFrame.size.width)),\(Int(rootFrame.size.height))] a=\(rootView.alpha) h=\(rootView.isHidden) op=\(rootView.layer.opacity) super=\(rootView.superview.map { "\(type(of: $0))" } ?? "nil") controllers=\(root.viewControllers.count) tab=\(root.rootTabController != nil) display=[\(Int(displayFrame.origin.x)),\(Int(displayFrame.origin.y)),\(Int(displayFrame.size.width)),\(Int(displayFrame.size.height))]")
     if let tabs = root.viewControllers.first as? TabBarController {
-        lines.append("tabs n=\(tabs.controllers.count) sel=\(tabs.selectedIndex) cur=\(tabs.currentController.map { "\(type(of: $0))" } ?? "nil") f=[\(Int(tabs.view.frame.size.width))x\(Int(tabs.view.frame.size.height))] a=\(tabs.view.alpha) h=\(tabs.view.isHidden)")
+        let tabsView = tabs.displayNode.view
+        lines.append("tabs n=\(tabs.controllers.count) sel=\(tabs.selectedIndex) cur=\(tabs.currentController.map { "\(type(of: $0))" } ?? "nil") f=[\(Int(tabsView.frame.size.width))x\(Int(tabsView.frame.size.height))] a=\(tabsView.alpha) h=\(tabsView.isHidden)")
         for controller in tabs.controllers.prefix(8) {
-            let frame = controller.view.frame
-            lines.append("  tab \(type(of: controller)) loaded=\(controller.isViewLoaded) f=[\(Int(frame.origin.x)),\(Int(frame.origin.y)),\(Int(frame.size.width)),\(Int(frame.size.height))] a=\(controller.view.alpha) h=\(controller.view.isHidden) super=\(controller.view.superview.map { "\(type(of: $0))" } ?? "nil")")
+            let controllerView = controller.displayNode.view
+            let frame = controllerView.frame
+            lines.append("  tab \(type(of: controller)) loaded=\(controller.isViewLoaded) f=[\(Int(frame.origin.x)),\(Int(frame.origin.y)),\(Int(frame.size.width)),\(Int(frame.size.height))] a=\(controllerView.alpha) h=\(controllerView.isHidden) super=\(controllerView.superview.map { "\(type(of: $0))" } ?? "nil")")
         }
     }
     if let chatList = root.chatListController {
-        let frame = chatList.view.frame
-        lines.append("chatList loaded=\(chatList.isViewLoaded) f=[\(Int(frame.origin.x)),\(Int(frame.origin.y)),\(Int(frame.size.width)),\(Int(frame.size.height))] a=\(chatList.view.alpha) h=\(chatList.view.isHidden) super=\(chatList.view.superview.map { "\(type(of: $0))" } ?? "nil")")
+        let chatListView = chatList.displayNode.view
+        let frame = chatListView.frame
+        lines.append("chatList loaded=\(chatList.isViewLoaded) f=[\(Int(frame.origin.x)),\(Int(frame.origin.y)),\(Int(frame.size.width)),\(Int(frame.size.height))] a=\(chatListView.alpha) h=\(chatListView.isHidden) super=\(chatListView.superview.map { "\(type(of: $0))" } ?? "nil")")
     }
     let container = window.hostView.containerView
     lines.append("container frame=[\(Int(container.frame.size.width))x\(Int(container.frame.size.height))] bg=\(String(describing: container.backgroundColor)) sub=\(container.subviews.count)")
