@@ -403,16 +403,7 @@ private func openCheckedExternalUrl(context: AccountContext, urlContext: OpenURL
         return
     }
     
-    if canonicalUrl.scheme?.lowercased() == "tg", canonicalUrl.host?.lowercased() == "companion" {
-        dismissInput()
-        let controller = DebugCompanionScreen(context: context, standalone: navigationController == nil)
-        if let navigationController {
-            navigationController.pushViewController(controller)
-        } else {
-            context.sharedContext.presentGlobalController(controller, nil)
-        }
-        return
-    }
+    // HARDENED_BUILD: the tg://companion debug screen is not shipped.
 
     if canonicalUrl.scheme == "mailto" {
         context.sharedContext.applicationBindings.openUrl(url)
@@ -464,10 +455,7 @@ private func openCheckedExternalUrl(context: AccountContext, urlContext: OpenURL
         if let scheme = parsedUrl.scheme, (scheme == "tg" || scheme == context.sharedContext.applicationBindings.appSpecificScheme) {
             var convertedUrl: String?
             let host = parsedUrl.host?.lowercased() ?? ""
-            if host == "debug", parsedUrl.path == "/crash_reports" {
-                handleResolvedUrl(.settings(.path("debug/crash_reports")))
-                return
-            }
+            // HARDENED_BUILD: tg://debug entry points are not shipped.
             if host == "sendgrams" {
                 guard parsedUrl.path.isEmpty || parsedUrl.path == "/",
                       let components = URLComponents(url: parsedUrl, resolvingAgainstBaseURL: false) else {
@@ -933,14 +921,7 @@ private func openCheckedExternalUrl(context: AccountContext, urlContext: OpenURL
                 case "sg":
                     if let path = parsedUrl.pathComponents.last {
                         switch path {
-                            case "debug":
-                                if let debugController = context.sharedContext.makeDebugSettingsController(context: context) {
-                                    navigationController?.pushViewController(debugController)
-                                    return
-                                }
-                            case "sgdebug", "sg_debug":
-                                navigationController?.pushViewController(sgDebugController(context: context))
-                                return
+                            // HARDENED_BUILD: sg:// debug entry points are not shipped.
                             case "settings":
                                 navigationController?.pushViewController(sgSettingsController(context: context))
                                 return

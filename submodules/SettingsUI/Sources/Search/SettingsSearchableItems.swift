@@ -4391,15 +4391,7 @@ func settingsSearchableItems(
         
         var allItems: [SettingsSearchableItem] = []
 
-        allItems.append(SettingsSearchableItem(
-            id: "debug/crash_reports",
-            title: "Crash Logs",
-            icon: .support,
-            breadcrumbs: ["Debug Settings"],
-            present: { context, _, present in
-                present(.push, crashReportsController(sharedContext: context.sharedContext, context: context))
-            }
-        ))
+        // HARDENED_BUILD: no debug entries in settings search.
         
         let profileItems = profileSearchableItems(context: context, canAddAccount: canAddAccount)
         allItems.append(contentsOf: profileItems)

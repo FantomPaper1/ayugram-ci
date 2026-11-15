@@ -1092,17 +1092,11 @@ func openResolvedUrlImpl(
                         navigationController?.pushViewController(globalAutoremoveScreen(context: context, initialValue: settings.messageAutoremoveTimeout ?? 0, updated: { _ in }), animated: true)
                     })
                 case .enableLog:
-                    if let navigationController = navigationController {
+                    if navigationController != nil {
                         let _ = updateLoggingSettings(accountManager: context.sharedContext.accountManager, {
                             $0.withUpdatedLogToFile(true)
                         }).start()
-                        
-                        if let controller = context.sharedContext.makeDebugSettingsController(context: context) {
-                            var controllers = navigationController.viewControllers
-                            controllers.append(controller)
-                            
-                            navigationController.setViewControllers(controllers, animated: true)
-                        }
+                        // HARDENED_BUILD: logging only, no debug screen.
                     }
                 case .phonePrivacy:
                     let privacySignal = context.engine.privacy.requestAccountPrivacySettings()

@@ -209,7 +209,7 @@ public final class TelegramRootController: NavigationController, TelegramRootCon
     public func addRootControllers(hidePhoneInSettings: Bool, showContactsTab: Bool, showCallsTab: Bool, showNewsTab: Bool) {
         let tabBarController = TabBarControllerImpl(theme: self.presentationData.theme, strings: self.presentationData.strings)
         tabBarController.navigationPresentation = .master
-        let chatListController = self.context.sharedContext.makeChatListController(context: self.context, location: .chatList(groupId: .root), controlsHistoryPreload: true, hideNetworkActivityStatus: false, previewing: false, enableDebugActions: !GlobalExperimentalSettings.isAppStoreBuild)
+        let chatListController = self.context.sharedContext.makeChatListController(context: self.context, location: .chatList(groupId: .root), controlsHistoryPreload: true, hideNetworkActivityStatus: false, previewing: false, enableDebugActions: false)
         if let sharedContext = self.context.sharedContext as? SharedAccountContextImpl {
             chatListController.tabBarItem.badgeValue = sharedContext.switchingData.chatListBadge
             chatListController.tabBarItem.accessibilityValue = sharedContext.switchingData.chatListBadgeAccessibilityValue
@@ -244,12 +244,7 @@ public final class TelegramRootController: NavigationController, TelegramRootCon
         }
         
         let accountSettingsController = PeerInfoScreenImpl(hidePhoneInSettings: hidePhoneInSettings, context: self.context, updatedPresentationData: nil, peerId: self.context.account.peerId, avatarInitiallyExpanded: false, isOpenedFromChat: false, reactionSourceMessageId: nil, callMessages: [], isSettings: true)
-        accountSettingsController.tabBarItemDebugTapAction = { [weak self] in
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.pushViewController(debugController(sharedContext: strongSelf.context.sharedContext, context: strongSelf.context))
-        }
+        // HARDENED_BUILD: the hidden debug menu is not shipped.
         accountSettingsController.parentController = self
         controllers.append(accountSettingsController)
                 
