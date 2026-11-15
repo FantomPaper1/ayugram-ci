@@ -93,6 +93,20 @@ public class ContactsController: ViewController {
         
         self.title = self.presentationData.strings.Contacts_Title
         
+        // HARDENED_BUILD: the tab bar waits for every item image; a missing one kept the whole interface black.
+        self.tabBarItem.title = self.presentationData.strings.Contacts_Title
+        let tabIcon: UIImage?
+        if useSpecialTabBarIcons() {
+            tabIcon = UIImage(bundleImageName: "Chat List/Tabs/Holiday/IconContacts")
+        } else {
+            tabIcon = UIImage(bundleImageName: "Chat List/Tabs/IconContacts")
+        }
+        self.tabBarItem.image = tabIcon
+        self.tabBarItem.selectedImage = tabIcon
+        if !self.presentationData.reduceMotion {
+            self.tabBarItem.animationName = "TabContacts"
+        }
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: self.presentationData.strings.Common_Back, style: .plain, target: nil, action: nil)
         
         self.scrollToTop = { [weak self] in

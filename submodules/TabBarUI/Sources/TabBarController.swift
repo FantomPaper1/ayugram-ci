@@ -518,7 +518,9 @@ open class TabBarControllerImpl: ViewController, TabBarController {
             |> delay(0.0, queue: Queue.mainQueue())
         }
         
-        self._ready.set(allReady)
+        // HARDENED_BUILD: tab bar artwork is cosmetic, a missing icon must not keep the interface black forever.
+        self._ready.set(allReady
+        |> timeout(3.0, queue: Queue.mainQueue(), alternate: .single(true)))
         
         if let updatedSelectedIndex = updatedSelectedIndex {
             self.selectedIndex = updatedSelectedIndex
