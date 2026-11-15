@@ -261,54 +261,13 @@ final class AuthorizedApplicationContext {
         }
         if let tabsController = self.rootController.viewControllers.first as? TabBarController, !tabsController.controllers.isEmpty, tabsController.selectedIndex >= 0 {
             let controller = tabsController.controllers[tabsController.selectedIndex]
-            // HARDENED_DIAG: find the promise that never becomes true.
-            let diagRoot = self.rootController
-            let diagWindow = self.mainWindow
-            print("AYUDIAG setup tabs=\(tabsController.controllers.count) sel=\(tabsController.selectedIndex) selected=\(type(of: controller)) rootControllers=\(self.rootController.viewControllers.count) labels=\(tabsController.controllers.map { "\(type(of: $0))" }.joined(separator: ","))")
-            let _ = tabsController.ready.get().start(next: { value in
-                print("AYUDIAG tabsReady=\(value)")
-                Logger.shared.log("AYUDIAG", "tabsReady=\(value)")
-            })
-            let _ = controller.ready.get().start(next: { value in
-                print("AYUDIAG selectedReady=\(value) \(type(of: controller))")
-                Logger.shared.log("AYUDIAG", "selectedReady=\(value) \(type(of: controller))")
-            })
             let combinedReady = combineLatest(tabsController.ready.get(), controller.ready.get())
             |> map { $0 && $1 }
             |> filter { $0 }
             |> take(1)
             // HARDENED_BUILD: a stalled optional promise must not leave a black window.
-            let readyWatchdog = Signal<Bool, NoError> { subscriber in
-                print("AyuGram: UI ready watchdog fired; revealing the interface")
-                Logger.shared.log("AYUDIAG", "watchdog fired")
-                for delay in [2.0, 12.0] {
-                    Queue.mainQueue().after(delay, {
-                        let summary = ayuDiagLaunchSummary(root: diagRoot, window: diagWindow, tag: "watchdog+\(Int(delay))")
-                        print("AYUDIAG \(summary)")
-                        Logger.shared.log("AYUDIAG", summary)
-                        if delay > 5.0 {
-                            let container = diagWindow.hostView.containerView
-                            if container.viewWithTag(0x4159_5547) == nil {
-                                let text = UITextView(frame: container.bounds)
-                                text.tag = 0x4159_5547
-                                text.backgroundColor = UIColor.black
-                                text.textColor = UIColor.green
-                                text.font = UIFont.monospacedSystemFont(ofSize: 7.0, weight: .regular)
-                                text.text = summary
-                                text.isEditable = false
-                                text.isScrollEnabled = true
-                                text.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                                container.addSubview(text)
-                            }
-                        }
-                    })
-                }
-                subscriber.putNext(true)
-                subscriber.putCompletion()
-                return EmptyDisposable
-            }
             self.isReady.set(combinedReady
-            |> timeout(8.0, queue: Queue.mainQueue(), alternate: readyWatchdog))
+            |> timeout(8.0, queue: Queue.mainQueue(), alternate: .single(true)))
         } else {
             self.isReady.set(.single(true))
         }
@@ -1085,50 +1044,3 @@ final class AuthorizedApplicationContext {
     }
 }
 
-// HARDENED_DIAG_BEGIN
-private func ayuDiagDescribe(_ view: UIView, depth: Int, maxDepth: Int) -> String {
-    var line = String(repeating: "  ", count: depth)
-    let frame = view.frame
-    line += "\(type(of: view)) f=[\(Int(frame.origin.x)),\(Int(frame.origin.y)),\(Int(frame.size.width)),\(Int(frame.size.height))] a=\(view.alpha) h=\(view.isHidden) op=\(view.layer.opacity)"
-    if let keys = view.layer.animationKeys(), !keys.isEmpty {
-        line += " anim=\(keys.joined(separator: ","))"
-    }
-    if depth < maxDepth {
-        for subview in view.subviews.prefix(16) {
-            line += "\n" + ayuDiagDescribe(subview, depth: depth + 1, maxDepth: maxDepth)
-        }
-    }
-    return line
-}
-
-func ayuDiagLaunchSummary(root: TelegramRootController, window: Window1, tag: String) -> String {
-    var lines: [String] = ["[\(tag)]"]
-    let windows = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.flatMap { $0.windows }
-    lines.append("windows=\(windows.count)")
-    for item in windows {
-        lines.append("  window key=\(item.isKeyWindow) hidden=\(item.isHidden) level=\(item.windowLevel.rawValue) a=\(item.alpha) root=\(item.rootViewController.map { "\(type(of: $0))" } ?? "nil")")
-    }
-    let rootView: UIView = root.displayNode.view
-    let rootFrame = rootView.frame
-    let displayFrame = root.displayNode.frame
-    lines.append("root loaded=\(root.isViewLoaded) f=[\(Int(rootFrame.origin.x)),\(Int(rootFrame.origin.y)),\(Int(rootFrame.size.width)),\(Int(rootFrame.size.height))] a=\(rootView.alpha) h=\(rootView.isHidden) op=\(rootView.layer.opacity) super=\(rootView.superview.map { "\(type(of: $0))" } ?? "nil") controllers=\(root.viewControllers.count) tab=\(root.rootTabController != nil) display=[\(Int(displayFrame.origin.x)),\(Int(displayFrame.origin.y)),\(Int(displayFrame.size.width)),\(Int(displayFrame.size.height))]")
-    if let tabs = root.viewControllers.first as? TabBarController {
-        let tabsView = tabs.displayNode.view
-        lines.append("tabs n=\(tabs.controllers.count) sel=\(tabs.selectedIndex) cur=\(tabs.currentController.map { "\(type(of: $0))" } ?? "nil") f=[\(Int(tabsView.frame.size.width))x\(Int(tabsView.frame.size.height))] a=\(tabsView.alpha) h=\(tabsView.isHidden)")
-        for controller in tabs.controllers.prefix(8) {
-            let controllerView = controller.displayNode.view
-            let frame = controllerView.frame
-            lines.append("  tab \(type(of: controller)) loaded=\(controller.isViewLoaded) f=[\(Int(frame.origin.x)),\(Int(frame.origin.y)),\(Int(frame.size.width)),\(Int(frame.size.height))] a=\(controllerView.alpha) h=\(controllerView.isHidden) super=\(controllerView.superview.map { "\(type(of: $0))" } ?? "nil")")
-        }
-    }
-    if let chatList = root.chatListController {
-        let chatListView = chatList.displayNode.view
-        let frame = chatListView.frame
-        lines.append("chatList loaded=\(chatList.isViewLoaded) f=[\(Int(frame.origin.x)),\(Int(frame.origin.y)),\(Int(frame.size.width)),\(Int(frame.size.height))] a=\(chatListView.alpha) h=\(chatListView.isHidden) super=\(chatListView.superview.map { "\(type(of: $0))" } ?? "nil")")
-    }
-    let container = window.hostView.containerView
-    lines.append("container frame=[\(Int(container.frame.size.width))x\(Int(container.frame.size.height))] bg=\(String(describing: container.backgroundColor)) sub=\(container.subviews.count)")
-    lines.append(ayuDiagDescribe(container, depth: 0, maxDepth: 3))
-    return lines.joined(separator: "\n")
-}
-// HARDENED_DIAG_END

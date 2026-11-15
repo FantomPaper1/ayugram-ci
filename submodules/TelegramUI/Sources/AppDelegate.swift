@@ -1494,30 +1494,6 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
                     self.mainWindow.debugAction = nil
                     self.mainWindow.viewController = context.rootController
 
-                    // HARDENED_DIAG: find out why the interface can remain black.
-                    let diagContext = context
-                    Queue.mainQueue().after(3.0) {
-                        let text = ayuDiagSummary(diagContext, tag: "t=3")
-                        print("AYUDIAG \(text)")
-                        Logger.shared.log("AYUDIAG", text)
-                    }
-                    Queue.mainQueue().after(10.0) {
-                        let text = ayuDiagSummary(diagContext, tag: "t=10")
-                        print("AYUDIAG \(text)")
-                        Logger.shared.log("AYUDIAG", text)
-                        if let container = diagContext.sharedApplicationContext.sharedContext.mainWindow?.hostView.containerView {
-                            let overlay = UITextView(frame: container.bounds)
-                            overlay.backgroundColor = UIColor.black
-                            overlay.textColor = UIColor.green
-                            overlay.font = UIFont.monospacedSystemFont(ofSize: 8.0, weight: .regular)
-                            overlay.text = text
-                            overlay.isEditable = false
-                            overlay.isScrollEnabled = true
-                            overlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                            container.addSubview(overlay)
-                        }
-                    }
-                    
                     #if DEBUG
                     if firstTime {
                         self.runCommentsCacheResetLaunchArguments(context: context.context)
@@ -3964,52 +3940,3 @@ private final class NavigationBarOverflowMenuReferenceSource: ContextReferenceCo
     }
 }
 
-// HARDENED_DIAG_BEGIN
-private func ayuDiagRect(_ rect: CGRect) -> String {
-    return "[\(rect.origin.x),\(rect.origin.y),\(rect.size.width),\(rect.size.height)]"
-}
-
-private func ayuDiagDescribeView(_ view: UIView, depth: Int, maxDepth: Int) -> String {
-    var line = String(repeating: "  ", count: depth)
-    line += "\(type(of: view)) f=\(ayuDiagRect(view.frame)) a=\(view.alpha) h=\(view.isHidden) op=\(view.layer.opacity)"
-    if let keys = view.layer.animationKeys(), !keys.isEmpty {
-        line += " anim=\(keys.joined(separator: ","))"
-    }
-    if let presentation = view.layer.presentation(), abs(presentation.opacity - view.layer.opacity) > 0.001 {
-        line += " presop=\(presentation.opacity)"
-    }
-    if depth < maxDepth {
-        for subview in view.subviews.prefix(16) {
-            line += "\n" + ayuDiagDescribeView(subview, depth: depth + 1, maxDepth: maxDepth)
-        }
-    }
-    return line
-}
-
-private func ayuDiagSummary(_ context: AuthorizedApplicationContext, tag: String) -> String {
-    var lines: [String] = ["[\(tag)]"]
-    let windows = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.flatMap { $0.windows }
-    lines.append("windows=\(windows.count)")
-    for window in windows {
-        lines.append("window key=\(window.isKeyWindow) hidden=\(window.isHidden) level=\(window.windowLevel.rawValue) f=\(ayuDiagRect(window.frame)) a=\(window.alpha) root=\(window.rootViewController.map { String(describing: type(of: $0)) } ?? "nil")")
-    }
-    let root = context.rootController
-    lines.append("root=\(type(of: root)) loaded=\(root.isViewLoaded) f=\(ayuDiagRect(root.view.frame)) a=\(root.view.alpha) h=\(root.view.isHidden) op=\(root.view.layer.opacity) super=\(root.view.superview.map { String(describing: type(of: $0)) } ?? "nil")")
-    lines.append("rootDisplay f=\(ayuDiagRect(root.displayNode.frame))")
-    if let tabs = root.viewControllers.first as? TabBarController {
-        lines.append("tabs n=\(tabs.controllers.count) sel=\(tabs.selectedIndex) cur=\(tabs.currentController.map { String(describing: type(of: $0)) } ?? "nil") f=\(ayuDiagRect(tabs.view.frame)) a=\(tabs.view.alpha) h=\(tabs.view.isHidden)")
-    }
-    if let chatList = root.chatListController {
-        lines.append("chatList loaded=\(chatList.isViewLoaded) f=\(ayuDiagRect(chatList.view.frame)) a=\(chatList.view.alpha) h=\(chatList.view.isHidden) super=\(chatList.view.superview.map { String(describing: type(of: $0)) } ?? "nil")")
-    }
-    if let window = windows.first, let rootView = window.rootViewController?.view {
-        lines.append("windowRootView f=\(ayuDiagRect(rootView.frame)) a=\(rootView.alpha) h=\(rootView.isHidden) sub=\(rootView.subviews.count)")
-        lines.append(ayuDiagDescribeView(rootView, depth: 0, maxDepth: 3))
-    }
-    if let container = context.sharedApplicationContext.sharedContext.mainWindow?.hostView.containerView {
-        lines.append("container f=\(ayuDiagRect(container.frame)) bg=\(String(describing: container.backgroundColor)) sub=\(container.subviews.count)")
-        lines.append(ayuDiagDescribeView(container, depth: 0, maxDepth: 4))
-    }
-    return lines.joined(separator: "\n")
-}
-// HARDENED_DIAG_END
